@@ -18,12 +18,16 @@ function checkWhoWin() {
     for (let i = 0; i < 8; i++) {
 
         if (checker(plyr1SArr, winSequenc[i])) {
-            winner = "Player 1"
+            winner = "Player 1";
+            console.log(i);
+            showCutLine(i);
             return true;
         }
 
         if (checker(plyr2SArr, winSequenc[i])) {
             winner = "Player 2";
+            console.log(i);
+            showCutLine(i);
             return true;
         }
     }
@@ -44,26 +48,32 @@ function checker(arr, target){
 $(".box").click(function(){
     let boxId = $(this).attr("id");
     if(player == 1){
-        $("#" + boxId).html('<i class="fas fa-times " id= "icon"></i>');
+        if ($("#" + boxId).children().length == 0){
+            $("#" + boxId).html('<i class="fas fa-times " id= "icon"></i>');
+    
+            plyrSUpdate(boxId,plyr1SArr);
+            
+            if (checkWhoWin()) {
+                console.log(winner);
+            }
+    
+            player = 2;    // change player
 
-        plyrSUpdate(boxId,plyr1SArr);
-        
-        if (checkWhoWin()) {
-            console.log(winner);
         }
-
-        player = 2;    // change player
     }
     else{
-        $("#" + boxId).html('<i class="far fa-circle " id= "icon"></i>');
+        if ($("#" + boxId).children().length == 0){
+            $("#" + boxId).html('<i class="far fa-circle " id= "icon"></i>');
+    
+            plyrSUpdate(boxId, plyr2SArr);
+          
+            if (checkWhoWin()) {
+                console.log(winner);
+            }
+    
+            player = 1;   // change player
 
-        plyrSUpdate(boxId, plyr2SArr);
-      
-        if (checkWhoWin()) {
-            console.log(winner);
         }
-
-        player = 1;   // change player
     }
 });
 
@@ -101,4 +111,44 @@ function plyrSUpdate(boxId,plyrSArr){
 
       
     }
+}
+
+function showCutLine(winSeqNo){
+    switch(winSeqNo){
+        case 0: changeCutLineCss("50px", "0px", "visible","rotate(0deg)", "350px");
+        break;
+
+        case 1: changeCutLineCss("160px", "0px", "visible", "rotate(0deg)", "350px");
+        break;
+
+        case 2: changeCutLineCss("270px", "0px", "visible", "rotate(0deg)", "350px");
+        break;
+
+        case 3: changeCutLineCss("160px", "-110px", "visible", "rotate(90deg)", "350px");
+        break;
+
+        case 4: changeCutLineCss("160px", "0px", "visible", "rotate(90deg)", "350px");
+        break;
+
+        case 5: changeCutLineCss("160px", "110px", "visible", "rotate(90deg)", "350px");
+        break;
+
+        case 6: changeCutLineCss("160px", "-60px", "visible", "rotate(-135deg)", "470px");
+        break;
+
+        case 7: changeCutLineCss("160px", "-60px", "visible", "rotate(135deg)", "470px");
+        break;
+
+    }
+}
+
+function changeCutLineCss(topValue, leftValue, visibilityValue, rotateValue, widthValue){
+  
+    $(".cut-line").css({
+        top: topValue,
+        left: leftValue,
+        visibility: visibilityValue,
+        transform: rotateValue,
+        width: widthValue
+    });
 }

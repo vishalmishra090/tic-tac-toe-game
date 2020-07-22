@@ -23,7 +23,9 @@ header h1{
 }
 
 .row {
-  padding-bottom: 4px;
+  font-size: 0px;
+
+  padding-bottom: 0px;
 }
 
 
@@ -34,10 +36,11 @@ main h2{
 }
 
 .game-container{
-
-  padding: 10px;
+  width: 350px;
+  position: relative;
   /* border: 2px solid rgb(30, 215, 233); */
   margin: auto;
+  margin-bottom: 30px;;
 }
 
 .box{
@@ -47,7 +50,7 @@ main h2{
   background-color: pink;
   border: 2px solid red;
   vertical-align: middle;
- 
+  margin: 3px;
 }
 
 #icon {
@@ -55,7 +58,21 @@ main h2{
   padding: 0;
   font-size: 80px;
   color: red;
+  /* animation-name: iconShow;
+  animation-duration: 1s; */
   line-height: 100px;
+}
+
+@keyframes iconShow{
+  0%{opacity: 0;}
+  
+  /* 25%{opacity: 0.25;}
+
+  50%{opacity: 0.5;}
+
+  75%{opacity: 0.75;} */
+
+  100%{opacity: 1;}
 }
 .score h4{
   padding: 5px 10px;
@@ -72,3 +89,23 @@ main h2{
   margin: 5px 25px;
   display: inline-block;
 }
+
+.cut-line {
+ position: absolute;
+ /* top: 160px;
+ left: -65px; */
+ visibility: hidden;
+ /* transform: rotate(0deg);
+ width: 480px; */
+ height: 10px;
+ /* opacity: 0.3; */
+ background-color: rgb(13, 179, 195);
+ /* animation-name: showCutLine;
+ animation-duration: 1s; */
+}
+
+/* @keyframes showCutLine{
+  0%{opacity: 0;}
+
+  100%(opacity: 1;)
+} */

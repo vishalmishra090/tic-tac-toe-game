@@ -13,7 +13,7 @@
       <h1>TIC TAC TOE GAME</h1>
     </header>
     <main>
-      <h2>Press Any Key To Start The Game</h2>
+      <h2 class="top-heading">Press Any Key To Start The Game</h2>
 
       <div class="game-container">
         <div class = "cut-line"></div>
@@ -53,7 +53,7 @@
         </div>
 
       </div>
-    <div class="score">
+    <div class="score-box">
       <div class="row">
         <h4 class="player1 player">Score</h4>
         <h4 class="player2 player">Score</h4>
@@ -63,7 +63,8 @@
         <h3>Player 2</h3>
       </div>
     </div>
-
+    
+    <button class = "restart" onclick="this.blur();"><i class="fas fa-redo-alt" id = "restart-icon" ></i> Restart</button>
     </main>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

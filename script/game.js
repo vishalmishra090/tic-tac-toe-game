@@ -1,20 +1,107 @@
 let player = 1; // Start Game with player No 1
 let winner = null;
+let scorePlyr1;
+let scorePlyr2;
 let winSequenc = [
-    [1,2,3],
-    [4,5,6],
-    [7,8,9],
-    [1,4,7],
-    [2,5,8],
-    [3,6,9],
-    [1,5,9],
-    [3,5,7]
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+    [1, 5, 9],
+    [3, 5, 7]
 ]
 
-let plyr1SArr = [];   // Player 1 Sequence
-let plyr2SArr = [];   // Player 2 Sequence
+let plyr1SArr = []; // Player 1 Sequence
+let plyr2SArr = []; // Player 2 Sequence
 
-function checkWhoWin() {  
+// create a one time Event Listener (https://www.sitepoint.com/create-one-time-events-javascript/)
+
+$(document).one("keydown", function () {
+
+
+    initiateGame();    // Game Is ready to play
+    
+    restartGame();     // Restart the Game
+});
+
+function initiateGame() {
+    scorePlyr1 = 0;
+    scorePlyr2 = 0;
+    changeTopHeading();
+    if (winner == null) {
+        $('.player').text(0);
+    }
+    playGame(); // Play the game
+}
+
+function playGame() {
+
+    $(".box").click(function () {
+        let boxId = $(this).attr("id");
+        if (player == 1) {
+            if (showIcon(boxId)) {
+
+                updatePlyrSeq(boxId, plyr1SArr);
+                showWhoWin();
+                changeScore(winner);
+                nextRound();
+                player = 2; // change player
+
+                changeTopHeading();
+
+            }
+        } else {
+            if (showIcon(boxId)) {
+
+                updatePlyrSeq(boxId, plyr2SArr);
+                showWhoWin();
+                changeScore(winner);
+                nextRound();
+                player = 1; // change player
+
+                changeTopHeading();
+
+            }
+        }
+    });
+}
+
+function nextRound(){    // Play next round
+   if(winner != null){
+       
+       $(document).one("keydown", function (){
+           
+               winner = null;
+               player = 1;
+               plyr1SArr = [];
+               plyr2SArr = [];
+               eraseIcon();
+               changeTopHeading();
+               hideCutLine();
+
+       });
+   }
+}
+ function restartGame(){
+     $(".restart").click(function(){
+         $(".top-heading").text("Press Any Key To Start The Game");
+         $('.player').text(0);
+         winner = null;
+         player = 1;
+         plyr1SArr = [];
+         plyr2SArr = [];
+         eraseIcon();
+         hideCutLine();
+         $(".box").unbind();
+         $(document).one("keydown", function (){
+            initiateGame();
+         });
+  
+     });
+ }
+function checkWhoWin() {
     for (let i = 0; i < 8; i++) {
 
         if (checker(plyr1SArr, winSequenc[i])) {
@@ -37,118 +124,166 @@ function checkWhoWin() {
 
 // from stackoverflow(https: //stackoverflow.com/questions/53606337/check-if-array-contains-all-elements-of-another-array)
 
-function checker(arr, target){
-    return target.every(function(value){
-       return arr.includes(value);
+function checker(arr, target) {
+    return target.every(function (value) {
+        return arr.includes(value);
     })
 }
 
-
-
-$(".box").click(function(){
-    let boxId = $(this).attr("id");
-    if(player == 1){
-        if ($("#" + boxId).children().length == 0){
-            $("#" + boxId).html('<i class="fas fa-times " id= "icon"></i>');
-    
-            plyrSUpdate(boxId,plyr1SArr);
-            
-            if (checkWhoWin()) {
-                console.log(winner);
-            }
-    
-            player = 2;    // change player
-
-        }
-    }
-    else{
-        if ($("#" + boxId).children().length == 0){
-            $("#" + boxId).html('<i class="far fa-circle " id= "icon"></i>');
-    
-            plyrSUpdate(boxId, plyr2SArr);
-          
-            if (checkWhoWin()) {
-                console.log(winner);
-            }
-    
-            player = 1;   // change player
-
-        }
-    }
-});
-
-function plyrSUpdate(boxId,plyrSArr){
-   
-      // update player sequence
-
-      switch(boxId){
-          case "box11" : plyrSArr.push(1);
-          break;
-
-          case "box12" : plyrSArr.push(2);
-          break;
-
-          case "box13" : plyrSArr.push(3)
-          break;
-
-          case "box21" : plyrSArr.push(4)
-          break;
-
-          case "box22" : plyrSArr.push(5)
-          break;
-
-          case "box23" : plyrSArr.push(6)
-          break;
-
-          case "box31" : plyrSArr.push(7)
-          break;
-
-          case "box32" : plyrSArr.push(8)
-          break;
-
-          case "box33" : plyrSArr.push(9)
-          break;
-
-      
+function showWhoWin() {
+    if (checkWhoWin()) {
+        $(".top-heading").text(winner + " " + "Win" + ", Press Any Key For Next Round");
     }
 }
 
-function showCutLine(winSeqNo){
-    switch(winSeqNo){
-        case 0: changeCutLineCss("50px", "0px", "visible","rotate(0deg)", "350px");
-        break;
+function changeScore(winner) {
 
-        case 1: changeCutLineCss("160px", "0px", "visible", "rotate(0deg)", "350px");
-        break;
+    if (winner == "Player 1") {
+        $('.player1').text(`${++scorePlyr1}`);
+        return;
+    }
+    if (winner == "Player 2") {
+        $('.player2').text(`${++scorePlyr2}`);
+        return;
+    }
+    
+}
 
-        case 2: changeCutLineCss("270px", "0px", "visible", "rotate(0deg)", "350px");
-        break;
+function updatePlyrSeq(boxId, plyrSArr) {
 
-        case 3: changeCutLineCss("160px", "-110px", "visible", "rotate(90deg)", "350px");
-        break;
+    // update player sequence
 
-        case 4: changeCutLineCss("160px", "0px", "visible", "rotate(90deg)", "350px");
-        break;
+    switch (boxId) {
+        case "box11":
+            plyrSArr.push(1);
+            break;
 
-        case 5: changeCutLineCss("160px", "110px", "visible", "rotate(90deg)", "350px");
-        break;
+        case "box12":
+            plyrSArr.push(2);
+            break;
 
-        case 6: changeCutLineCss("160px", "-60px", "visible", "rotate(-135deg)", "470px");
-        break;
+        case "box13":
+            plyrSArr.push(3)
+            break;
 
-        case 7: changeCutLineCss("160px", "-60px", "visible", "rotate(135deg)", "470px");
-        break;
+        case "box21":
+            plyrSArr.push(4)
+            break;
+
+        case "box22":
+            plyrSArr.push(5)
+            break;
+
+        case "box23":
+            plyrSArr.push(6)
+            break;
+
+        case "box31":
+            plyrSArr.push(7)
+            break;
+
+        case "box32":
+            plyrSArr.push(8)
+            break;
+
+        case "box33":
+            plyrSArr.push(9)
+            break;
+
 
     }
 }
 
-function changeCutLineCss(topValue, leftValue, visibilityValue, rotateValue, widthValue){
-  
+function showCutLine(winSeqNo) {
+    switch (winSeqNo) {
+        case 0:
+            changeCutLineCss("50px", "0px", "block", "rotate(0deg)", "350px");
+            break;
+
+        case 1:
+            changeCutLineCss("160px", "0px", "block", "rotate(0deg)", "350px");
+            break;
+
+        case 2:
+            changeCutLineCss("270px", "0px", "block", "rotate(0deg)", "350px");
+            break;
+
+        case 3:
+            changeCutLineCss("160px", "-110px", "block", "rotate(90deg)", "350px");
+            break;
+
+        case 4:
+            changeCutLineCss("160px", "0px", "block", "rotate(90deg)", "350px");
+            break;
+
+        case 5:
+            changeCutLineCss("160px", "110px", "block", "rotate(90deg)", "350px");
+            break;
+
+        case 6:
+            changeCutLineCss("160px", "-60px", "block", "rotate(-135deg)", "470px");
+            break;
+
+        case 7:
+            changeCutLineCss("160px", "-60px", "block", "rotate(135deg)", "470px");
+            break;
+
+    }
+}
+
+function hideCutLine(){
+    $(".cut-line").css("display", "none");
+}
+
+function changeCutLineCss(topValue, leftValue, displayValue, rotateValue, widthValue) {
+
     $(".cut-line").css({
         top: topValue,
         left: leftValue,
-        visibility: visibilityValue,
+        display: displayValue,
         transform: rotateValue,
         width: widthValue
     });
 }
+
+function showIcon(boxId) {
+    // When User Click Show Cross or Circle Icon
+    if (($("#" + boxId).children().length == 0) && (player == 1) && winner == null) {
+        $("#" + boxId).html('<i class="fas fa-times " id= "icon"></i>');
+
+        return true;
+    }
+
+    if (($("#" + boxId).children().length == 0) && (player == 2) && winner == null) {
+        $("#" + boxId).html('<i class="far fa-circle " id= "icon"></i>');
+
+        return true
+    }
+
+    return false;
+}
+
+function eraseIcon(){
+    $(".box").text("");
+}
+
+function changeTopHeading() {
+
+    if (winner == null) {
+        if (player == 0) {
+            $(".top-heading").text("Play Player 1");
+        }
+        if (player == 1)
+            $(".top-heading").text("Play Player 1");
+
+        if (player == 2)
+            $(".top-heading").text("Play Player 2");
+    }
+}
+
+
+
+
+
+
+

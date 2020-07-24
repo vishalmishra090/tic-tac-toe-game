@@ -94,6 +94,9 @@ function nextRound(){    // Play next round
          plyr2SArr = [];
          eraseIcon();
          hideCutLine();
+
+         // Remove all event handlers (https://www.w3schools.com/jquery/event_unbind.asp#:~:text=Use%20the%20off()%20method,handlers%20using%20an%20event%20object.)
+         
          $(".box").unbind();
          $(document).one("keydown", function (){
             initiateGame();

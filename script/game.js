@@ -18,15 +18,20 @@ let plyr2SArr = []; // Player 2 Sequence
 
 // create a one time Event Listener (https://www.sitepoint.com/create-one-time-events-javascript/)
 
-$(document).one("keydown", function () {
+$(document).on("keydown", function (event) {
 
-
-    initiateGame();    // Game Is ready to play
     
-    restartGame();     // Restart the Game
+// bug (if we press mouse left button continuously it automatically triggers keydown event and key = ctrl)
+
+   if(event.code == "Space"){
+       initiateGame();    // Game Is ready to play
+       
+       restartGame();     // Restart the Game
+   }
 });
 
 function initiateGame() {
+    $(document).unbind();
     scorePlyr1 = 0;
     scorePlyr2 = 0;
     changeTopHeading();
@@ -71,8 +76,10 @@ function playGame() {
 function nextRound(){    // Play next round
    if(winner != null){
        
-       $(document).one("keydown", function (){
-           
+       $(document).on("keydown", function (event){
+           if(event.code == "Space"){
+            //  bug (if we press mouse left button continuously it automatically triggers keydown event and key = ctrl)
+
                winner = null;
                player = 1;
                plyr1SArr = [];
@@ -80,13 +87,16 @@ function nextRound(){    // Play next round
                eraseIcon();
                changeTopHeading();
                hideCutLine();
-
+                // Remove all event handlers (https://www.w3schools.com/jquery/event_unbind.asp#:~:text=Use%20the%20off()%20method,handlers%20using%20an%20event%20object.)
+             $(this).unbind();
+           }
+           
        });
    }
 }
  function restartGame(){
      $(".restart").click(function(){
-         $(".top-heading").text("Press Any Key To Start The Game");
+         $(".top-heading").text("Press Space Key To Start The Game");
          $('.player').text(0);
          winner = null;
          player = 1;
@@ -98,8 +108,14 @@ function nextRound(){    // Play next round
          // Remove all event handlers (https://www.w3schools.com/jquery/event_unbind.asp#:~:text=Use%20the%20off()%20method,handlers%20using%20an%20event%20object.)
          
          $(".box").unbind();
-         $(document).one("keydown", function (){
-            initiateGame();
+         $(document).on("keydown", function (event){
+            //  bug (if we press mouse left button continuously it automatically triggers keydown event and key = ctrl)
+
+             if (event.code == "Space"){
+
+                 initiateGame();
+
+             }
          });
   
      });
@@ -135,7 +151,7 @@ function checker(arr, target) {
 
 function showWhoWin() {
     if (checkWhoWin()) {
-        $(".top-heading").text(winner + " " + "Win" + ", Press Any Key For Next Round");
+        $(".top-heading").text(winner + " " + "Win" + ", Press Space Key To Next Round");
     }
 }
 
@@ -283,10 +299,3 @@ function changeTopHeading() {
             $(".top-heading").text("Play Player 2");
     }
 }
-
-
-
-
-
-
-

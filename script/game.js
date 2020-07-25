@@ -2,6 +2,7 @@ let player = 1; // Start Game with player No 1
 let winner = null;
 let scorePlyr1;
 let scorePlyr2;
+let count = 0;
 let winSequenc = [
     [1, 2, 3],
     [4, 5, 6],
@@ -27,6 +28,8 @@ $(document).on("keydown", function (event) {
        initiateGame();    // Game Is ready to play
        
        restartGame();     // Restart the Game
+
+       $(this).unbind();
    }
 });
 
@@ -53,7 +56,7 @@ function playGame() {
                 changeScore(winner);
                 nextRound();
                 player = 2; // change player
-
+                
                 changeTopHeading();
 
             }
@@ -65,7 +68,7 @@ function playGame() {
                 changeScore(winner);
                 nextRound();
                 player = 1; // change player
-
+                
                 changeTopHeading();
 
             }
@@ -74,7 +77,7 @@ function playGame() {
 }
 
 function nextRound(){    // Play next round
-   if(winner != null){
+   if((winner != null) || (count == 9)){
        
        $(document).on("keydown", function (event){
            if(event.code == "Space"){
@@ -82,6 +85,7 @@ function nextRound(){    // Play next round
 
                winner = null;
                player = 1;
+               count = 0
                plyr1SArr = [];
                plyr2SArr = [];
                eraseIcon();
@@ -108,7 +112,7 @@ function nextRound(){    // Play next round
          // Remove all event handlers (https://www.w3schools.com/jquery/event_unbind.asp#:~:text=Use%20the%20off()%20method,handlers%20using%20an%20event%20object.)
          
          $(".box").unbind();
-         $(document).on("keydown", function (event){
+         $(document).on("keydown", function (event) {
             //  bug (if we press mouse left button continuously it automatically triggers keydown event and key = ctrl)
 
              if (event.code == "Space"){
@@ -120,6 +124,15 @@ function nextRound(){    // Play next round
   
      });
  }
+function checkDraw(){
+   ++count;
+   if((count == 9) && (winner == null)){
+       console.log(true);
+       return true;
+   }
+   return false;
+ }
+
 function checkWhoWin() {
     for (let i = 0; i < 8; i++) {
 
@@ -152,6 +165,9 @@ function checker(arr, target) {
 function showWhoWin() {
     if (checkWhoWin()) {
         $(".top-heading").text(winner + " " + "Win" + ", Press Space Key To Next Round");
+    }
+    if(checkDraw()){
+       $(".top-heading").text("Draw! Press Space Key To Next Round");
     }
 }
 
@@ -288,7 +304,7 @@ function eraseIcon(){
 
 function changeTopHeading() {
 
-    if (winner == null) {
+    if (winner == null && count != 9) {
         if (player == 0) {
             $(".top-heading").text("Play Player 1");
         }

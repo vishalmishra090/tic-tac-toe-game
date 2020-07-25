@@ -12,10 +12,26 @@ let winSequenc = [
     [3, 6, 9],
     [1, 5, 9],
     [3, 5, 7]
-]
+];
 
 let plyr1SArr = []; // Player 1 Sequence
 let plyr2SArr = []; // Player 2 Sequence
+
+// All function Name ==>
+// function initiateGame();
+// function playGame();
+// function nextRound();
+// function restartGame();
+// function checkWhoWin();
+// function checker(arr, target);
+// function checkDraw();
+// function showWhoWin();
+// function showCutLine(winSeqNo);
+// function showIcon(boxId);
+// function changeTopHeading();
+// function changeScore(winner);
+// function changeCutLineCss(topValue, leftValue, displayValue, rotateValue, widthValue) ;
+// function updatePlyrSeq(boxId, plyrSArr);
 
 // create a one time Event Listener (https://www.sitepoint.com/create-one-time-events-javascript/)
 

@@ -217,9 +217,9 @@ button:focus {
 
     #game-container .box {
         width: 80px;
-        height: 80px
+        height: 80px;
     }
-
+    
     #icon {
         font-size: 60px;
         line-height: 80px;
@@ -325,5 +325,38 @@ button:focus {
 
     .game-status{
         height: 52px;
+    }
+}
+
+@media screen and (max-width: 500px) and (max-height: 500px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    .game-status {
+        height: 52px;
+    }
+
+    #game-container .box {
+        width: 60px;
+        height: 60px;
+        border: 1px solid red;
+    }
+
+    #icon {
+        font-size: 40px;
+        line-height: 60px;
     }
 }

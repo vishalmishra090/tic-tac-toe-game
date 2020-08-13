@@ -1,75 +1,94 @@
 <!-- v1.2 -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Tic Tac Toe Game</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://kit.fontawesome.com/8b681eaa53.js" crossorigin="anonymous"></script>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe Game</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/8b681eaa53.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <header>
+    <h1>TIC TAC TOE GAME</h1>
+  </header>
+  <main id="main-box">
+    <h2 class="game-status">Press Space Key To Start The Game</h2>
+
+
+    <div id="game-container">
+      <svg class="cut-line" height="100%" width="100%">
+        <line x1="0" y1="0" x2="100%" y2="100%" viewBox=" 0 0 100 100" style="stroke: blue; stroke-width: 5;"></line>
+      </svg>
+      <div class="row row1">
+        <div id="box11" class="box">
+
+        </div>
+        <div id="box12" class="box">
+
+        </div>
+        <div id="box13" class="box">
+
+        </div>
+      </div>
+      <div class="row row2">
+        <div id="box21" class="box">
+
+        </div>
+        <div id="box22" class="box">
+
+        </div>
+        <div id="box23" class="box">
+
+        </div>
+
+      </div>
+      <div class="row row3">
+        <div id="box31" class="box">
+
+        </div>
+        <div id="box32" class="box">
+
+        </div>
+        <div id="box33" class="box">
+
+        </div>
+      </div>
+
+    </div>
+
+   
+       
     
-  </head>
-  <body>
-    <header>
-      <h1>TIC TAC TOE GAME</h1>
-    </header>
-    <main>
-      <h2 class="top-heading">Press Space Key To Start The Game</h2>
 
-      <div class="game-container">
-        <div class = "cut-line"></div>
-        <div class="row">
-          <div id="box11" class="box">
-          
-          </div>
-          <div id="box12" class="box">
-            
-          </div>
-          <div id="box13" class="box">
-
-          </div>
-        </div>
-        <div class="row">
-          <div id="box21" class="box">
-
-          </div>
-          <div id="box22" class="box">
-
-          </div>
-          <div id="box23" class="box">
-
-          </div>
-
-        </div>
-        <div class="row">
-          <div id="box31" class="box">
-
-          </div>
-          <div id="box32" class="box">
-
-          </div>
-          <div id="box33" class="box">
-
-          </div>
-        </div>
-
+    </div>
+    <div id="score-box">
+      <div class="row row1">
+        <h4 class="plyrScor" id="plyr1Scor">Score</h4>
+        <h4 class="plyrScor" id="plyr2Scor">Score</h4>
       </div>
-    <div class="score-box">
-      <div class="row">
-        <h4 class="player1 player">Score</h4>
-        <h4 class="player2 player">Score</h4>
-      </div>
-      <div class="row">
-        <h3><i class="fas fa-times "></i> Player 1</h3>
-        <h3><i class="far fa-circle "></i> Player 2</h3>
+      <div class="row row2">
+        <h3 class="plyrName" id="plyr1Name"><i class="fas fa-times "></i> Player 1</h3>
+        <h3 class="plyrName" id="plyr2Name"><i class="far fa-circle "></i> Player 2</h3>
       </div>
     </div>
-    
+
     <!-- The .blur() method correctly removes the focus -->
     <!-- https://stackoverflow.com/questions/36167366/remove-focus-from-button-once-clicked -->
+   <div class="all-btn">
+     <button class="start-btn" onclick="this.blur();">Start</button>
+ 
+      <button class="next-round-btn" onclick="this.blur();">Next Round</button>
+ 
+     <button class="restart-btn" onclick="this.blur();"><i class="fas fa-redo-alt" id="restart-btn-icon"></i>
+       Restart</button>
+   </div>
+  </main>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="script/game.js"></script>
 
-    <button class = "restart" onclick="this.blur();"><i class="fas fa-redo-alt" id = "restart-icon" ></i> Restart</button>
-    </main>
-  </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="script/game.js"></script>
 </html>

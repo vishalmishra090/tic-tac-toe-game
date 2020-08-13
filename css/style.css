@@ -328,7 +328,7 @@ button:focus {
     }
 }
 
-@media screen and (max-width: 500px) and (max-height: 500px) {
+@media screen and (max-width: 500px) and (max-height: 550px) {
     h1 {
         font-size: 24px;
     }

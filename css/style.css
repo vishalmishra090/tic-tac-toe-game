@@ -1,129 +1,329 @@
-body{
-  font-size: 100%;
-  font-family: arial;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  min-width: 800px;
+html {
+    height: 100%;
 }
 
-header{
-  padding: 10px 0px 10px 0;
+body {
+    
+    font-family: arial;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    min-width: 270px;
 }
 
-header h1{
-  padding: 10px;
-  font-size: 3rem;
-  text-align: center;
-  background-color: rgb(30, 215, 233);
-  color: white;
-  margin: auto;
-  width: 800px;
-  border-radius: 20px;
+/* Heading font size */
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 24px;
+}
+
+/* header section*/
+
+header {
+    margin: 0 auto 3vh;
+    text-align: center;
+    max-width: 720px;
+    padding-top: 10px;
+}
+
+header h1 {
+    background-color: rgb(30, 215, 233);
+    border-radius: 20px;
+    color: white;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+/* main section */
+
+#main-box {
+    width: 100%;
+    margin: 0;
+}
+
+.game-status {
+    display: block;
+    color: rgb(13, 179, 195);
+    margin: 0 auto 3vh;
+}
+
+#game-container {
+    margin: 0 0 3vh;
+    position: relative;
+    display: inline-block;
 }
 
 .row {
-  font-size: 0px;
-
-  padding-bottom: 0px;
+    font-size: 0px;
+    padding: 0;
+    margin: 0;
 }
 
-
-main h2{
-  font-size: 2.5rem;
-  text-align: center;
-  color: rgb(13, 179, 195);
+#score-box {
+    margin: 0 0 3vh;
 }
 
-.game-container{
-  width: 350px;
-  position: relative;
-  /* border: 2px solid rgb(30, 215, 233); */
-  margin: auto;
-  margin-bottom: 30px;;
-}
+/* game container section */
 
-.box{
-  width: 100px;
-  height: 100px;
-  display: inline-block;
-  background-color: pink;
-  border: 2px solid red;
-  vertical-align: middle;
-  margin: 3px;
+#game-container .box {
+    background-color: pink;
+    border: 2px solid red;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin: 2px;
+    vertical-align: middle;
 }
 
 #icon {
-  margin: 0;
-  padding: 0;
-  font-size: 80px;
-  color: red;
-  /* animation-name: iconShow;
-  animation-duration: 1s; */
-  line-height: 100px;
+    color: red;
+    font-size: 80px;
+    margin: 0;
+    padding: 0;
+    line-height: 100px;
 }
 
-@keyframes iconShow{
-  0%{opacity: 0;}
-  
-  /* 25%{opacity: 0.25;}
-
-  50%{opacity: 0.5;}
-
-  75%{opacity: 0.75;} */
-
-  100%{opacity: 1;}
-}
-.score-box h4{
-  width: 80px;
-  height:35px;
-  /* padding: 5px 10px; */
-  background: rgb(30, 215, 233);
-  border: 2px solid rgb(13, 179, 195);
-  color: white;
-  display: inline-block;
-  font-size: 1.5rem;
-  margin: 10px 25px;
-  vertical-align: middle;
-  line-height: 35px;
-}
-.score-box h3{
-  font-size: 2rem;
-  color: rgb(13, 179, 195);
-  margin: 5px 25px;
-  display: inline-block;
-}
-
+/* svg */
 .cut-line {
- position: absolute;
- /* top: 160px;
- left: -65px; */
- display: none;
- /* transform: rotate(0deg);
- width: 480px; */
- height: 10px;
- /* opacity: 0.3; */
- background-color: black;
- /* background-image: repeating-linear-gradient(90deg, black 5px, black 0%, black 5%, white 5%, white 10%); */
- 
+    position: absolute;
+    left: 0;
+    display: none;
 }
 
-.restart {
-   background-color: crimson;
-   padding: 5px 15px;
-   margin-top: 20px;
-   color: white;
-   font-size: 1rem;
-   font-weight: bold;
-   border: 1px solid black;
-   cursor: pointer;
+/* socre box  section*/
+
+#score-box,
+#score-box div {
+    margin: 0 0 3vh;
 }
-.restart:focus{
-  background-color: white;
-  color: black;
+
+.plyrScor,
+.plyrName {
+    display: inline-block;
 }
-#restart-icon{
-  display: inline-block;
-  text-align: right;
-  margin-right: 5px;
+
+.plyrScor {
+    background-color: rgb(30, 215, 233);
+    border: 2px solid rgb(13, 179, 195);
+    color: white;
+    padding: 0 5px;
+    width: 80px;
+    vertical-align: middle;
+}
+
+#plyr1Scor {
+    margin: 0 50px 0 0;
+}
+
+#plyr2Scor {
+    margin: 0 0 0 50px;
+}
+
+.plyrName {
+    color: rgb(13, 179, 195);
+}
+
+#plyr1Name {
+    margin: 0 25px 0 0;
+}
+
+#plyr2Name {
+    margin: 0 0 0 25px;
+}
+
+/* buttons */
+
+button {
+    background-color: rgb(13, 179, 195);
+    border: 2px solid black;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 5px 15px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.restart-btn {
+    background-color: crimson;
+}
+
+
+
+/* button:hover {
+     background-color: white;
+     color: black;
+ } */
+
+button:focus {
+    border-width: 1px;
+    border-radius: 0px;
+    outline: none;
+    background-color: red;
+}
+
+#restart-btn-icon {
+    display: inline-block;
+    margin-right: 5px;
+    width: 15px;
+}
+
+.start-btn,
+.next-round-btn {
+    display: none;
+}
+
+
+/* mobile css for 1 and 2 */
+
+
+@media screen and (max-width: 500px) {
+    h1 {
+        font-size: 30px;
+
+    }
+    
+    h2 {
+        font-size: 28px;
+    }
+    h3 {
+        font-size: 26px;
+    }
+
+    h4 {
+        font-size: 24px;
+    }
+
+    header h1 {
+        padding: 5px;
+    }
+
+    .game-status {
+        height: 70px;
+    }
+
+    #game-container .box {
+        width: 80px;
+        height: 80px
+    }
+
+    #icon {
+        font-size: 60px;
+        line-height: 80px;
+    }
+   
+    .all-btn{
+        position: fixed;
+        left: 0;
+        font-size: 0;
+        width: 100%;
+        min-width: 270px;
+        bottom: 0;
+    }
+    button {
+        font-size: 16px;
+        border: none;
+        width: 100%;
+        padding: 10px 15px;
+        display: inline-block;
+        margin: 0;
+    }
+
+    button:hover {
+        background-color: rgb(13, 179, 195);
+        color: white;
+    }
+
+    .restart-btn:hover {
+        background-color: crimson;
+        color: white;
+    }
+
+    #resert-btn-icon {
+        width: 28px;
+    }
+
+    .start-btn {
+        display: inline-block;
+    }
+
+    .restart-btn {
+        display: none;
+    }
+}
+
+/* mobile css 1 */
+
+@media screen and (max-width: 350px) {
+    body {
+        background: lightgreen;
+    }
+
+    /* game container section */
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+     .game-status {
+         height: 52px;
+     }
+
+    .plyrScor {
+        width: 60px;
+    }
+}
+
+/* mobile css 2*/
+@media screen and (min-width: 350px) and (max-width: 500px) {
+    body {
+        background: yellow;
+
+    }
+}
+
+@media screen and (max-width: 500px) and (max-height: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    .game-status{
+        height: 52px;
+    }
 }

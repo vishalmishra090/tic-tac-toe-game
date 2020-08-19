@@ -32,7 +32,7 @@ $(document).on("keydown", function (event) {
     // bug (if we press mouse left button continuously it automatically triggers keydown event and key = ctrl)
 
     if (event.code == "Space") {
-        initiateGame(); // Game Is ready to play
+        initiateGame(); // Get ready to play the game
 
         restartGame(); // Restart the Game
 
@@ -239,7 +239,7 @@ function checker(arr, target) {
 function showWhoWin() {
     if (checkWhoWin()) {
         if (y.matches) {
-            $(".game-status").text(winner + " " + "Win" + ", Press Space Key To Next Round");
+            $(".game-status").text(winner + " " + "Win" + ", Press Space Key For Next Round");
             $(".next-round-btn").css("display", "none");
 
             $(".restart-btn").css("width", "auto");
@@ -255,7 +255,7 @@ function showWhoWin() {
     }
     if (checkDraw()) {
         if (y.matches) {
-            $(".game-status").text("Draw! Press Space Key To Next Round");
+            $(".game-status").text("Draw! Press Space Key For Next Round");
 
             $(".next-round-btn").css("display", "none");
 
@@ -418,7 +418,7 @@ function changeTopHeading() {
 }
 
 $(".start-btn").on("click", function () {
-    initiateGame(); // Game Is ready to play
+    initiateGame(); // Get ready to play the game
 
     restartGame(); // Restart the Game
     flag = true;
@@ -485,12 +485,12 @@ function changeBtnCss2(y) {
         $(".start-btn").css("display", "none");
 
         if (flag == false) {
-            $(".game-status").text("Press Space Key To Start The Game");
+            $(".game-status").text("Press Space Key For Start The Game");
         }
 
         if (winner != null) {
 
-            $(".game-status").text(winner + " " + "Win" + ", Press Space Key To Next Round");
+            $(".game-status").text(winner + " " + "Win" + ", Press Space Key For Next Round");
             $(".next-round-btn").css("display", "none");
 
             $(".restart-btn").css("width", "auto");
@@ -498,7 +498,7 @@ function changeBtnCss2(y) {
         }
 
         if (count == 9 && winner == null) {
-            $(".game-status").text("Draw! Press Space Key To Next Round");
+            $(".game-status").text("Draw! Press Space Key For Next Round");
 
             $(".next-round-btn").css("display", "none");
 

@@ -9,7 +9,18 @@
   <title>Tic Tac Toe Game</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="https://kit.fontawesome.com/8b681eaa53.js" crossorigin="anonymous"></script>
+  <script>
+    var a = window.matchMedia('(max-width: 500px)');
 
+    var b = window.matchMedia('(min-width: 501px)');
+
+    if(a.matches){
+      $(".game-status").text("Press Space Key To Start The Game");
+    }
+    if(b.matches){
+       $(".game-status").text("Click Start Button");
+    }
+  </script>
 </head>
 
 <body>
@@ -17,7 +28,7 @@
     <h1>TIC TAC TOE GAME</h1>
   </header>
   <main id="main-box">
-    <h2 class="game-status">Press Space Key To Start The Game</h2>
+    <h2 class="game-status"></h2>
 
 
     <div id="game-container">

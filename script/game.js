@@ -485,7 +485,7 @@ function changeBtnCss2(y) {
         $(".start-btn").css("display", "none");
 
         if (flag == false) {
-            $(".game-status").text("Press Space Key For Start The Game");
+            $(".game-status").text("Press Space Key To Start The Game");
         }
 
         if (winner != null) {
